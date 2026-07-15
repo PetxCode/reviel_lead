@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviel · Lead Currents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #16222C;
+            --sea: #2E4557;
+            --current: #3E6B7E;
+            --mist: #E8EDF0;
+            --paper: #FBFCFC;
+            --line: #D4DDE2;
+            --faint: #6B7C88;
+            --kelp: #3F7255;
+            --amber: #A8722F;
+            --rose: #9C4A3C;
+            --shadow: 0 1px 2px rgba(22, 34, 44, .05), 0 8px 28px rgba(22, 34, 44, .07);
+            --r: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            font-size: 16px
+        }
+
+        body {
+            font-family: 'Instrument Sans', system-ui, sans-serif;
+            background: var(--mist);
+            color: var(--ink);
+            min-height: 100vh;
+            line-height: 1.55;
+        }
+
+        ::selection {
+            background: #C9DAE2
+        }
+
+        /* ---------- shell ---------- */
+        .shell {
+            display: flex;
+            min-height: 100vh
+        }
+
+        .rail {
+            width: 236px;
+            flex: 0 0 236px;
+            background: linear-gradient(178deg, #182631 0%, #22384A 78%, #2A455B 100%);
+            color: #DCE6EC;
+            display: flex;
+            flex-direction: column;
+            padding: 32px 20px 24px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .wordmark {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-style: italic;
+            font-size: 1.7rem;
+            letter-spacing: .01em;
+            color: #F2F6F8;
+        }
+
+        .console-name {
+            font-size: .68rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #8FA6B4;
+            margin-top: 4px;
+        }
+
+        .rail nav {
+            margin-top: 44px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px
+        }
+
+        .rail nav button {
+            all: unset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: .92rem;
+            color: #B9C9D3;
+            transition: background .15s, color .15s;
+        }
+
+        .rail nav button:hover {
+            background: rgba(255, 255, 255, .06);
+            color: #EDF3F6
+        }
+
+        .rail nav button[aria-current="page"] {
+            background: rgba(255, 255, 255, .1);
+            color: #FFFFFF;
+            font-weight: 500
+        }
+
+        .rail nav button:focus-visible {
+            outline: 2px solid #9CC1D2;
+            outline-offset: 2px
+        }
+
+        .rail nav svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.6;
+            flex: 0 0 auto
+        }
+
+        .rail-foot {
+            margin-top: auto;
+            font-size: .75rem;
+            color: #7E93A1
+        }
+
+        .env-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 999px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .7rem;
+            color: #C6D5DD;
+        }
+
+        .env-chip .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #7FB08F
+        }
+
+        .env-chip.test .dot {
+            background: #D9A75B
+        }
+
+        main {
+            flex: 1;
+            min-width: 0;
+            padding: 52px 56px 80px
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            display: none
+        }
+
+        .page.active {
+            display: block
+        }
+
+        /* ---------- type ---------- */
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 2.35rem;
+            letter-spacing: -.01em;
+            line-height: 1.12;
+        }
+
+        .lede {
+            color: var(--faint);
+            margin-top: 10px;
+            max-width: 56ch;
+            font-size: .98rem
+        }
+
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .eyebrow {
+            font-size: .68rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--current);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* ---------- cards & forms ---------- */
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-top: 28px;
+        }
+
+        .card>.hint {
+            font-size: .85rem;
+            color: var(--faint);
+            margin-top: 2px
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px
+        }
+
+        .field {
+            margin-top: 20px
+        }
+
+        .field label {
+            display: block;
+            font-weight: 500;
+            font-size: .88rem;
+            margin-bottom: 6px
+        }
+
+        .field .sub {
+            font-weight: 400;
+            color: var(--faint);
+            font-size: .8rem;
+            margin-top: -2px;
+            margin-bottom: 6px
+        }
+
+        input[type=text],
+        input[type=number],
+        input[type=url],
+        input[type=password],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            font: inherit;
+            font-size: .92rem;
+            color: var(--ink);
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        textarea {
+            min-height: 88px;
+            resize: vertical
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .85rem
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--current);
+            box-shadow: 0 0 0 3px rgba(62, 107, 126, .15);
+        }
+
+        .btn {
+            all: unset;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: .92rem;
+            background: var(--sea);
+            color: #F3F7F9;
+            transition: background .15s, transform .05s;
+        }
+
+        .btn:hover {
+            background: #3A576D
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--current);
+            outline-offset: 2px
+        }
+
+        .btn[disabled] {
+            opacity: .5;
+            cursor: default
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--sea);
+            border: 1px solid var(--line)
+        }
+
+        .btn.ghost:hover {
+            background: #EFF3F5
+        }
+
+        .btn.small {
+            padding: 7px 14px;
+            font-size: .83rem
+        }
+
+        /* ---------- the cast (signature) ---------- */
+        .cast {
+            margin-top: 28px;
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            background: linear-gradient(180deg, #F2F6F7, #EBF0F2);
+            overflow: hidden;
+        }
+
+        .cast-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 16px 22px 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cast-head .eyebrow {
+            margin: 0
+        }
+
+        .cast-tally {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .8rem;
+            color: var(--faint)
+        }
+
+        .cast-lines {
+            max-height: 230px;
+            overflow-y: auto;
+            padding: 8px 0
+        }
+
+        .cast-line {
+            display: flex;
+            gap: 14px;
+            align-items: baseline;
+            padding: 7px 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .82rem;
+            color: var(--sea);
+            border-left: 2px solid transparent;
+            animation: drift .3s ease both;
+        }
+
+        .cast-line:hover {
+            background: rgba(62, 107, 126, .06);
+            border-left-color: var(--current)
+        }
+
+        .cast-line .idx {
+            color: #A3B4BE;
+            flex: 0 0 26px;
+            text-align: right
+        }
+
+        .cast-empty {
+            padding: 26px 22px;
+            font-size: .88rem;
+            color: var(--faint);
+            font-style: italic
+        }
+
+        @keyframes drift {
+            from {
+                opacity: 0;
+                transform: translateX(-4px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            .cast-line {
+                animation: none
+            }
+
+            * {
+                transition: none !important
+            }
+        }
+
+        /* ---------- status / results ---------- */
+        .status {
+            margin-top: 22px;
+            border-radius: var(--r);
+            padding: 18px 22px;
+            font-size: .9rem;
+            display: none
+        }
+
+        .status.show {
+            display: block
+        }
+
+        .status.ok {
+            background: #EDF4EF;
+            border: 1px solid #C4DACB;
+            color: #2E5540
+        }
+
+        .status.err {
+            background: #F7EEEC;
+            border: 1px solid #E1C6BF;
+            color: #7C3A2E
+        }
+
+        .status.busy {
+            background: #EFF3F5;
+            border: 1px solid var(--line);
+            color: var(--sea)
+        }
+
+        .status h3 {
+            font-size: .95rem;
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .status pre {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .78rem;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: inherit;
+            opacity: .9;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 14px
+        }
+
+        .summary-cell {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px 14px
+        }
+
+        .summary-cell .n {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 500
+        }
+
+        .summary-cell .l {
+            font-size: .72rem;
+            color: var(--faint);
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-top: 2px
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(46, 69, 87, .25);
+            border-top-color: var(--sea);
+            animation: spin .8s linear infinite;
+            vertical-align: -2px;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* ---------- history ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            font-size: .88rem
+        }
+
+        th {
+            text-align: left;
+            font-size: .7rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--faint);
+            font-weight: 600;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        td {
+            padding: 11px 12px;
+            border-bottom: 1px solid #E6ECEF;
+            vertical-align: top
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: .72rem;
+            font-weight: 500;
+        }
+
+        .pill.ok {
+            background: #E4EFE8;
+            color: var(--kelp)
+        }
+
+        .pill.err {
+            background: #F3E4E0;
+            color: var(--rose)
+        }
+
+        .empty-state {
+            padding: 36px 22px;
+            text-align: center;
+            color: var(--faint)
+        }
+
+        .empty-state .fr {
+            font-family: 'Fraunces', serif;
+            font-size: 1.15rem;
+            color: var(--sea);
+            font-style: italic
+        }
+
+        /* ---------- settings ---------- */
+        .note {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-left: 3px solid var(--current);
+            background: #EFF4F6;
+            border-radius: 0 8px 8px 0;
+            font-size: .85rem;
+            color: #3B5262;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .row>* {
+            flex: 1
+        }
+
+        .row .btn {
+            flex: 0 0 auto
+        }
+
+        .seg {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden
+        }
+
+        .seg button {
+            all: unset;
+            cursor: pointer;
+            padding: 9px 18px;
+            font-size: .88rem;
+            color: var(--faint);
+            background: #fff;
+        }
+
+        .seg button[aria-pressed="true"] {
+            background: var(--sea);
+            color: #fff;
+            font-weight: 500
+        }
+
+        .seg button:focus-visible {
+            outline: 2px solid var(--current);
+            outline-offset: -2px
+        }
+
+        .saved-flash {
+            display: none;
+            margin-left: 14px;
+            font-size: .85rem;
+            color: var(--kelp);
+            font-weight: 500;
+        }
+
+        .saved-flash.show {
+            display: inline;
+            animation: fadeout 2.4s ease forwards
+        }
+
+        @keyframes fadeout {
+
+            0%,
+            70% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        .token-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: .78rem;
+            margin-top: 8px;
+            color: var(--faint)
+        }
+
+        .token-meta.ok {
+            color: var(--kelp)
+        }
+
+        .token-meta.err {
+            color: var(--rose)
+        }
+
+        @media (max-width:900px) {
+            .shell {
+                flex-direction: column
+            }
+
+            .rail {
+                width: 100%;
+                flex: none;
+                height: auto;
+                position: static;
+                flex-direction: row;
+                align-items: center;
+                gap: 18px;
+                padding: 16px 20px
+            }
+
+            .rail nav {
+                margin: 0 0 0 auto;
+                flex-direction: row
+            }
+
+            .rail-foot {
+                display: none
+            }
+
+            main {
+                padding: 32px 20px 60px
+            }
+
+            .grid2,
+            .summary-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+
+        <!-- ======================= rail ======================= -->
+        <aside class="rail">
+            <div>
+                <div class="wordmark">Reviel</div>
+                <div class="console-name">Lead Currents</div>
+            </div>
+            <nav aria-label="Pages">
+                <button data-page="run" aria-current="page">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 12c3-4 6 4 9 0s6 4 9 0" />
+                        <path d="M3 18c3-4 6 4 9 0s6 4 9 0" />
+                    </svg>
+                    Run a search
+                </button>
+                <button data-page="history">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 3" />
+                    </svg>
+                    History
+                </button>
+                <button data-page="settings">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" />
+                    </svg>
+                    Settings
+                </button>
+            </nav>
+            <div class="rail-foot">
+                Connected workflow<br>
+                <span class="env-chip" id="envChip"><span class="dot"></span><span
+                        id="envChipLabel">production</span></span>
+            </div>
+        </aside>
+
+        <main>
+
+            <!-- ======================= RUN ======================= -->
+            <section class="page active" id="page-run">
+                <div class="eyebrow">B2B lead research</div>
+                <h1>Cast a search.</h1>
+                <p class="lede">One category, any number of cities. The workflow scrapes Google Maps, pulls contact
+                    details from each website, and writes only tool-returned data into the Reviel CRM sheet.</p>
+
+                <div class="card">
+                    <div class="grid2">
+                        <div class="field" style="margin-top:0">
+                            <label for="fCategory">Category</label>
+                            <input type="text" id="fCategory" placeholder="e.g. Coworking Spaces" autocomplete="off">
+                        </div>
+                        <div class="field" style="margin-top:0">
+                            <label for="fMax">Max results per search</label>
+                            <input type="number" id="fMax" min="1" max="200" value="20">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="fCities">Cities</label>
+                        <div class="sub">Comma- or newline-separated. To include a state, write it with the city and no
+                            comma, e.g. Minneapolis MN.</div>
+                        <textarea id="fCities"
+                            placeholder="Minneapolis MN&#10;Saint Paul MN&#10;Rochester MN"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="fTerms">Additional search terms <span
+                                style="font-weight:400;color:var(--faint)">(optional)</span></label>
+                        <div class="sub">Leave blank to search with the category alone.</div>
+                        <input type="text" id="fTerms" placeholder="e.g. shared office, flex workspace"
+                            autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- signature: the cast -->
+                <div class="cast" aria-live="polite">
+                    <div class="cast-head">
+                        <div class="eyebrow">The cast — exact queries this run will send</div>
+                        <div class="cast-tally" id="castTally">0 searches</div>
+                    </div>
+                    <div class="cast-lines" id="castLines">
+                        <div class="cast-empty">Type a category and at least one city, and every query will appear here
+                            before anything runs.</div>
+                    </div>
+                </div>
+
+                <div style="margin-top:26px;display:flex;align-items:center;gap:14px">
+                    <button class="btn" id="btnRun">Send to workflow</button>
+                    <span style="font-size:.83rem;color:var(--faint)" id="runHint"></span>
+                </div>
+
+                <div class="status" id="runStatus" role="status"></div>
+            </section>
+
+            <!-- ======================= HISTORY ======================= -->
+            <section class="page" id="page-history">
+                <div class="eyebrow">Past runs</div>
+                <h1>History</h1>
+                <p class="lede">Runs sent from this console, newest first. Stored in this browser only.</p>
+                <div class="card" style="padding:10px 6px">
+                    <div id="historyBody"></div>
+                </div>
+                <div style="margin-top:18px">
+                    <button class="btn ghost small" id="btnClearHistory">Clear history</button>
+                </div>
+            </section>
+
+            <!-- ======================= SETTINGS ======================= -->
+            <section class="page" id="page-settings">
+                <div class="eyebrow">Configuration</div>
+                <h1>Settings</h1>
+                <p class="lede">Everything here is saved in this browser. Nothing is sent anywhere until you run a
+                    search or test a token.</p>
+
+                <div class="card">
+                    <h2>Workflow endpoint</h2>
+                    <p class="hint">Where the run form posts. Found in your n8n Form Trigger node.</p>
+                    <div class="field">
+                        <label for="sBaseUrl">n8n base URL</label>
+                        <input type="url" id="sBaseUrl" class="mono" placeholder="https://your-instance.app.n8n.cloud">
+                    </div>
+                    <div class="grid2">
+                        <div class="field">
+                            <label for="sPath">Form path</label>
+                            <input type="text" id="sPath" class="mono" value="mn-lead-research">
+                        </div>
+                        <div class="field">
+                            <label>Environment</label>
+                            <div class="seg" role="group" aria-label="Environment">
+                                <button id="segProd" aria-pressed="true">Production</button>
+                                <button id="segTest" aria-pressed="false">Test</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note" id="endpointPreviewNote">
+                        Requests will post to: <span class="mono" id="endpointPreview">—</span><br>
+                        <span style="opacity:.85">Test mode needs the workflow open in n8n with “Test workflow” running.
+                            Production mode needs the workflow toggled Active.</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Apify</h2>
+                    <p class="hint">Your token is used only by the “Test token” button below, straight from this browser
+                        to Apify. The workflow itself reads the token from n8n’s credential store — update it there too
+                        when you rotate it.</p>
+                    <div class="field">
+                        <label for="sApify">Apify API token</label>
+                        <div class="row">
+                            <input type="password" id="sApify" class="mono" placeholder="apify_api_…"
+                                autocomplete="off">
+                            <button class="btn ghost small" id="btnToggleToken" type="button">Show</button>
+                            <button class="btn small" id="btnTestApify" type="button">Test token</button>
+                        </div>
+                        <div class="token-meta" id="apifyMeta"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Google Sheet</h2>
+                    <p class="hint">The CRM sheet the workflow appends to. Changing the ID here is for your reference
+                        and quick access — the write destination is set inside the n8n Google Sheets node.</p>
+                    <div class="field">
+                        <label for="sSheet">Spreadsheet ID</label>
+                        <div class="row">
+                            <input type="text" id="sSheet" class="mono"
+                                placeholder="1NXow6xYw-t2GFOt5Ktw9maO3_4BB0FclJUaU42UWucc">
+                            <button class="btn small" id="btnOpenSheet" type="button">Open sheet</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>n8n editor</h2>
+                    <p class="hint">Optional. A direct link to the workflow, for when a credential or node needs
+                        changing.</p>
+                    <div class="field">
+                        <label for="sEditor">Workflow URL</label>
+                        <div class="row">
+                            <input type="url" id="sEditor" class="mono"
+                                placeholder="https://your-instance.app.n8n.cloud/workflow/…">
+                            <button class="btn small" id="btnOpenEditor" type="button">Open n8n</button>
+                        </div>
+                    </div>
+                    <div class="note">
+                        n8n does not allow credentials (Apify bearer, Google OAuth) to be edited from outside its own
+                        interface — that is a good thing. When a token rotates: update it here for testing, then open
+                        n8n and paste it into the “Bearer Auth account” credential.
+                    </div>
+                </div>
+
+                <div style="margin-top:26px;display:flex;align-items:center">
+                    <button class="btn" id="btnSaveSettings">Save settings</button>
+                    <span class="saved-flash" id="savedFlash">Saved</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            /* ---------- storage (localStorage with in-memory fallback) ---------- */
+            var mem = {};
+            var store = {
+                get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return (k in mem) ? mem[k] : null; } },
+                set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { mem[k] = v; } },
+                del: function (k) { try { window.localStorage.removeItem(k); } catch (e) { delete mem[k]; } }
+            };
+
+            var DEFAULTS = {
+                baseUrl: '',
+                path: 'mn-lead-research',
+                env: 'production',
+                apifyToken: '',
+                sheetId: '1NXow6xYw-t2GFOt5Ktw9maO3_4BB0FclJUaU42UWucc',
+                editorUrl: ''
+            };
+
+            function loadSettings() {
+                var raw = store.get('reviel.settings');
+                if (!raw) return Object.assign({}, DEFAULTS);
+                try { return Object.assign({}, DEFAULTS, JSON.parse(raw)); }
+                catch (e) { return Object.assign({}, DEFAULTS); }
+            }
+            function saveSettings(s) { store.set('reviel.settings', JSON.stringify(s)); }
+
+            function loadHistory() {
+                var raw = store.get('reviel.history');
+                if (!raw) return [];
+                try { var h = JSON.parse(raw); return Array.isArray(h) ? h : []; } catch (e) { return []; }
+            }
+            function saveHistory(h) { store.set('reviel.history', JSON.stringify(h.slice(0, 60))); }
+
+            var settings = loadSettings();
+            var history = loadHistory();
+
+            /* ---------- helpers ---------- */
+            function $(id) { return document.getElementById(id); }
+            function esc(s) {
+                return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            /* ---------- navigation ---------- */
+            var navButtons = document.querySelectorAll('.rail nav button');
+            navButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    navButtons.forEach(function (b) { b.removeAttribute('aria-current'); });
+                    btn.setAttribute('aria-current', 'page');
+                    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+                    $('page-' + btn.dataset.page).classList.add('active');
+                    if (btn.dataset.page === 'history') renderHistory();
+                });
+            });
+
+            /* ---------- the cast (live query preview) ---------- */
+            function parseList(raw) {
+                return String(raw || '').split(/[\n,]+/).map(function (s) { return s.trim(); }).filter(Boolean);
+            }
+            function buildSearches() {
+                var category = $('fCategory').value.trim();
+                var cities = parseList($('fCities').value);
+                var terms = parseList($('fTerms').value);
+                if (terms.length === 0 && category) terms = [category];
+                var out = [];
+                cities.forEach(function (c) {
+                    terms.forEach(function (t) {
+                        out.push(t + ' in ' + c);
+                    });
+                });
+                return out;
+            }
+            function renderCast() {
+                var lines = buildSearches();
+                var box = $('castLines');
+                var tally = $('castTally');
+                if (lines.length === 0) {
+                    box.innerHTML = '<div class="cast-empty">Type a category and at least one city, and every query will appear here before anything runs.</div>';
+                    tally.textContent = '0 searches';
+                    return;
+                }
+                var max = parseInt($('fMax').value, 10) || 20;
+                tally.textContent = lines.length + (lines.length === 1 ? ' search' : ' searches') + ' · up to ' + (lines.length * max) + ' places';
+                box.innerHTML = lines.map(function (l, i) {
+                    return '<div class="cast-line"><span class="idx">' + (i + 1) + '</span><span>' + esc(l) + '</span></div>';
+                }).join('');
+            }
+            ['fCategory', 'fCities', 'fTerms', 'fMax'].forEach(function (id) {
+                $(id).addEventListener('input', renderCast);
+            });
+
+            /* ---------- endpoint ---------- */
+            function endpointUrl() {
+                var base = (settings.baseUrl || '').replace(/\/+$/, '');
+                if (!base) return '';
+                var seg = settings.env === 'test' ? 'webhook-test' : 'webhook';
+                return base + '/' + seg + '/' + (settings.path || '').replace(/^\/+/, '');
+            }
+            function refreshEndpointPreview() {
+                $('endpointPreview').textContent = endpointUrl() || 'set an n8n base URL above';
+                var chip = $('envChip');
+                chip.classList.toggle('test', settings.env === 'test');
+                $('envChipLabel').textContent = settings.env;
+            }
+
+            /* ---------- run ---------- */
+            var runBusy = false;
+            $('btnRun').addEventListener('click', function () {
+                if (runBusy) return;
+                var status = $('runStatus');
+                var searches = buildSearches();
+                var category = $('fCategory').value.trim();
+                var cities = parseList($('fCities').value);
+
+                if (!category || cities.length === 0) {
+                    status.className = 'status err show';
+                    status.innerHTML = '<h3>Nothing to send yet</h3>Add a category and at least one city. The cast panel above will show the queries once both are in.';
+                    return;
+                }
+                var url = endpointUrl();
+                if (!url) {
+                    status.className = 'status err show';
+                    status.innerHTML = '<h3>No endpoint set</h3>Open <strong>Settings</strong> and add your n8n base URL first.';
+                    return;
+                }
+
+                var payload = {
+                    'Category': category,
+                    'Cities': $('fCities').value.trim(),
+                    'Additional Search Terms': $('fTerms').value.trim(),
+                    'Max Results Per Search': parseInt($('fMax').value, 10) || 20
+                };
+
+                runBusy = true;
+                $('btnRun').setAttribute('disabled', '');
+                status.className = 'status busy show';
+                status.innerHTML = '<span class="spinner"></span>Sending ' + searches.length + ' searches to the workflow. Scrapes can take a few minutes — leave this tab open.';
+
+                var entry = {
+                    at: new Date().toISOString(),
+                    category: category,
+                    cities: cities.length,
+                    searches: searches.length,
+                    env: settings.env,
+                    status: 'pending'
+                };
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(function (res) {
+                    return res.text().then(function (text) {
+                        var data = null;
+                        try { data = JSON.parse(text); } catch (e) { }
+                        if (!res.ok) {
+                            throw { http: res.status, body: text.slice(0, 400) };
+                        }
+                        entry.status = 'sent';
+                        history.unshift(entry); saveHistory(history);
+
+                        var summary = null;
+                        if (data) {
+                            var d = Array.isArray(data) ? data[0] : data;
+                            if (d && (d.total_organizations !== undefined || (d.json && d.json.total_organizations !== undefined))) {
+                                summary = d.json || d;
+                            }
+                        }
+                        if (summary) {
+                            status.className = 'status ok show';
+                            status.innerHTML =
+                                '<h3>Run complete</h3>The workflow finished and returned its summary.' +
+                                '<div class="summary-grid">' +
+                                cell(summary.total_organizations, 'organizations') +
+                                cell(summary.with_usable_email, 'with email') +
+                                cell(summary.with_phone, 'with phone') +
+                                cell(summary.missing_website, 'no website') +
+                                '</div>' +
+                                (summary.zero_result_searches && summary.zero_result_searches.length
+                                    ? '<pre>Zero-result searches:\n' + esc(summary.zero_result_searches.join('\n')) + '</pre>'
+                                    : '');
+                        } else {
+                            status.className = 'status ok show';
+                            status.innerHTML = '<h3>Accepted by n8n</h3>The workflow received the run. Results append to the CRM sheet as the scrapes finish — check the sheet or the n8n execution log for the summary.';
+                        }
+                    });
+                }).catch(function (err) {
+                    entry.status = 'failed';
+                    history.unshift(entry); saveHistory(history);
+                    status.className = 'status err show';
+                    if (err && err.http) {
+                        var tip = err.http === 404
+                            ? (settings.env === 'production'
+                                ? 'A 404 in production usually means the workflow is not toggled <strong>Active</strong> in n8n, or the form path differs.'
+                                : 'A 404 in test mode usually means “Test workflow” is not currently running in the n8n editor.')
+                            : '';
+                        status.innerHTML = '<h3>n8n replied with HTTP ' + err.http + '</h3>' + tip +
+                            (err.body ? '<pre>' + esc(err.body) + '</pre>' : '');
+                    } else {
+                        status.innerHTML = '<h3>Could not reach n8n</h3>' +
+                            'Check the base URL in Settings and that this page is allowed to call it. ' +
+                            'If the browser console shows a CORS error, add this page\u2019s origin to the <span class="mono">N8N_CORS_ALLOW_ORIGIN</span> setting on your instance, or serve this file from the same domain.';
+                    }
+                }).finally(function () {
+                    runBusy = false;
+                    $('btnRun').removeAttribute('disabled');
+                });
+
+                function cell(n, label) {
+                    return '<div class="summary-cell"><div class="n">' + esc(n === undefined ? '—' : n) + '</div><div class="l">' + label + '</div></div>';
+                }
+            });
+
+            /* ---------- history ---------- */
+            function renderHistory() {
+                var body = $('historyBody');
+                if (history.length === 0) {
+                    body.innerHTML = '<div class="empty-state"><div class="fr">Still water.</div>No runs yet — cast a search and it will land here.</div>';
+                    return;
+                }
+                var rows = history.map(function (h) {
+                    var d = new Date(h.at);
+                    var when = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ', ' +
+                        d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+                    var pill = h.status === 'failed'
+                        ? '<span class="pill err">failed</span>'
+                        : '<span class="pill ok">' + esc(h.status) + '</span>';
+                    return '<tr><td>' + esc(when) + '</td><td>' + esc(h.category) + '</td><td>' + h.cities +
+                        '</td><td>' + h.searches + '</td><td class="mono" style="font-size:.78rem">' + esc(h.env) + '</td><td>' + pill + '</td></tr>';
+                }).join('');
+                body.innerHTML = '<table><thead><tr><th>When</th><th>Category</th><th>Cities</th><th>Searches</th><th>Env</th><th>Status</th></tr></thead><tbody>' + rows + '</tbody></table>';
+            }
+            $('btnClearHistory').addEventListener('click', function () {
+                history = []; saveHistory(history); renderHistory();
+            });
+
+            /* ---------- settings ---------- */
+            function hydrateSettings() {
+                $('sBaseUrl').value = settings.baseUrl;
+                $('sPath').value = settings.path;
+                $('sApify').value = settings.apifyToken;
+                $('sSheet').value = settings.sheetId;
+                $('sEditor').value = settings.editorUrl;
+                $('segProd').setAttribute('aria-pressed', settings.env === 'production');
+                $('segTest').setAttribute('aria-pressed', settings.env === 'test');
+                refreshEndpointPreview();
+            }
+            $('segProd').addEventListener('click', function () { settings.env = 'production'; hydrateSettings(); });
+            $('segTest').addEventListener('click', function () { settings.env = 'test'; hydrateSettings(); });
+
+            ['sBaseUrl', 'sPath'].forEach(function (id) {
+                $(id).addEventListener('input', function () {
+                    settings.baseUrl = $('sBaseUrl').value.trim();
+                    settings.path = $('sPath').value.trim();
+                    refreshEndpointPreview();
+                });
+            });
+
+            $('btnSaveSettings').addEventListener('click', function () {
+                settings.baseUrl = $('sBaseUrl').value.trim();
+                settings.path = $('sPath').value.trim() || 'mn-lead-research';
+                settings.apifyToken = $('sApify').value.trim();
+                settings.sheetId = $('sSheet').value.trim();
+                settings.editorUrl = $('sEditor').value.trim();
+                saveSettings(settings);
+                refreshEndpointPreview();
+                var f = $('savedFlash');
+                f.classList.remove('show'); void f.offsetWidth; f.classList.add('show');
+            });
+
+            $('btnToggleToken').addEventListener('click', function () {
+                var i = $('sApify');
+                var showing = i.type === 'text';
+                i.type = showing ? 'password' : 'text';
+                this.textContent = showing ? 'Show' : 'Hide';
+            });
+
+            $('btnTestApify').addEventListener('click', function () {
+                var t = $('sApify').value.trim();
+                var meta = $('apifyMeta');
+                if (!t) { meta.className = 'token-meta err'; meta.textContent = 'Paste a token first.'; return; }
+                meta.className = 'token-meta'; meta.textContent = 'Checking with Apify…';
+                fetch('https://api.apify.com/v2/users/me?token=' + encodeURIComponent(t))
+                    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+                    .then(function (res) {
+                        if (res.ok && res.j && res.j.data) {
+                            var u = res.j.data;
+                            meta.className = 'token-meta ok';
+                            meta.textContent = 'Valid — account: ' + (u.username || u.id || 'unknown') + (u.plan && u.plan.id ? ' · plan: ' + u.plan.id : '');
+                        } else {
+                            meta.className = 'token-meta err';
+                            meta.textContent = 'Apify rejected the token' + (res.j && res.j.error && res.j.error.message ? ': ' + res.j.error.message : '.');
+                        }
+                    })
+                    .catch(function () {
+                        meta.className = 'token-meta err';
+                        meta.textContent = 'Could not reach api.apify.com from this browser.';
+                    });
+            });
+
+            $('btnOpenSheet').addEventListener('click', function () {
+                var id = $('sSheet').value.trim();
+                if (id) window.open('https://docs.google.com/spreadsheets/d/' + encodeURIComponent(id) + '/edit', '_blank', 'noopener');
+            });
+            $('btnOpenEditor').addEventListener('click', function () {
+                var u = $('sEditor').value.trim();
+                if (u) window.open(u, '_blank', 'noopener');
+            });
+
+            /* ---------- init ---------- */
+            hydrateSettings();
+            renderCast();
+            renderHistory();
+            if (!settings.baseUrl) {
+                $('runHint').textContent = 'Set your n8n base URL in Settings before the first run.';
+            }
+        })();
+    </script>
+</body>
+
+</html>
