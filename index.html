@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviel · Lead Currents</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23182631'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-style='italic' font-size='20' font-weight='700' fill='%23F2F6F8' letter-spacing='-0.5'%3ER%3C/text%3E%3C/svg%3E">
+    <link rel="alternate icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAA30lEQVQ4jZ2Tuw3CMBCGv0QMEQ2UjMAIjMAIGYEBGIERGIERGIERMgIjMAJPkCJFiB/FjmMnToA7ybLv/r/z2YmZWQGYSUoknSX1ko6SPkneSe0kHSUdJK0lLSSdJS0lnSStJa0kHSSdJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JC0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JC0kLSQvDdcqEAAAAASUVORK5CYII=">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -748,6 +753,93 @@
                     details from each website, and writes only tool-returned data into the Reviel CRM sheet.</p>
 
                 <div class="card">
+                    <!-- Quick Presets -->
+                    <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line);">
+                        <div class="eyebrow" style="font-size: .65rem; margin-bottom: 8px;">Quick Presets</div>
+
+                        <div class="grid2">
+                            <div class="field" style="margin-top:0">
+                                <label for="fPresetCategory">Category Presets (16 Categories)</label>
+                                <select id="fPresetCategory">
+                                    <option value="">-- Select a Category --</option>
+                                    <option value="Coworking Spaces">Coworking Spaces</option>
+                                    <option value="Accelerators">Accelerators</option>
+                                    <option value="Incubators">Incubators</option>
+                                    <option value="Startup Hubs">Startup Hubs</option>
+                                    <option value="Corporate HR & Wellness Programs">Corporate HR & Wellness Programs
+                                    </option>
+                                    <option value="Coworking Chains">Coworking Chains</option>
+                                    <option value="Professional Associations">Professional Associations</option>
+                                    <option value="University Counselling Centres">University Counselling Centres
+                                    </option>
+                                    <option value="University Career Services">University Career Services</option>
+                                    <option value="Student Unions">Student Unions</option>
+                                    <option value="Art & Design Studios">Art & Design Studios</option>
+                                    <option value="Maker Spaces">Maker Spaces</option>
+                                    <option value="Creative Co-operatives">Creative Co-operatives</option>
+                                    <option value="Community Health Centres">Community Health Centres</option>
+                                    <option value="Caregiver Support Groups">Caregiver Support Groups</option>
+                                    <option value="NGOs and Nonprofit Organizations">NGOs and Nonprofit Organizations
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="field" style="margin-top:0">
+                                <label for="fPresetCity">City Presets (Select to Append City)</label>
+                                <select id="fPresetCity">
+                                    <option value="">-- Add a City --</option>
+                                    <optgroup label="Actions">
+                                        <option value="LOAD_ALL_INDY">➕ Load All Indianapolis Metro (20 cities)</option>
+                                        <option value="LOAD_ALL_ORLANDO">➕ Load All Orlando Metro (20 cities)</option>
+                                    </optgroup>
+                                    <optgroup label="Indianapolis Metro Area (Indiana)">
+                                        <option value="Indianapolis IN">Indianapolis IN</option>
+                                        <option value="Carmel IN">Carmel IN</option>
+                                        <option value="Fishers IN">Fishers IN</option>
+                                        <option value="Noblesville IN">Noblesville IN</option>
+                                        <option value="Westfield IN">Westfield IN</option>
+                                        <option value="Zionsville IN">Zionsville IN</option>
+                                        <option value="Greenwood IN">Greenwood IN</option>
+                                        <option value="Avon IN">Avon IN</option>
+                                        <option value="Plainfield IN">Plainfield IN</option>
+                                        <option value="Brownsburg IN">Brownsburg IN</option>
+                                        <option value="Speedway IN">Speedway IN</option>
+                                        <option value="Lawrence IN">Lawrence IN</option>
+                                        <option value="Beech Grove IN">Beech Grove IN</option>
+                                        <option value="Greenfield IN">Greenfield IN</option>
+                                        <option value="Franklin IN">Franklin IN</option>
+                                        <option value="Whitestown IN">Whitestown IN</option>
+                                        <option value="McCordsville IN">McCordsville IN</option>
+                                        <option value="Cicero IN">Cicero IN</option>
+                                        <option value="Danville IN">Danville IN</option>
+                                        <option value="New Palestine IN">New Palestine IN</option>
+                                    </optgroup>
+                                    <optgroup label="Orlando Metro Area (Florida)">
+                                        <option value="Orlando FL">Orlando FL</option>
+                                        <option value="Winter Park FL">Winter Park FL</option>
+                                        <option value="Kissimmee FL">Kissimmee FL</option>
+                                        <option value="Lake Mary FL">Lake Mary FL</option>
+                                        <option value="Sanford FL">Sanford FL</option>
+                                        <option value="Altamonte Springs FL">Altamonte Springs FL</option>
+                                        <option value="Winter Garden FL">Winter Garden FL</option>
+                                        <option value="Oviedo FL">Oviedo FL</option>
+                                        <option value="Apopka FL">Apopka FL</option>
+                                        <option value="Casselberry FL">Casselberry FL</option>
+                                        <option value="Maitland FL">Maitland FL</option>
+                                        <option value="Longwood FL">Longwood FL</option>
+                                        <option value="Ocoee FL">Ocoee FL</option>
+                                        <option value="Windermere FL">Windermere FL</option>
+                                        <option value="Winter Springs FL">Winter Springs FL</option>
+                                        <option value="Clermont FL">Clermont FL</option>
+                                        <option value="Celebration FL">Celebration FL</option>
+                                        <option value="Lake Buena Vista FL">Lake Buena Vista FL</option>
+                                        <option value="Doctor Phillips FL">Doctor Phillips FL</option>
+                                        <option value="St. Cloud FL">St. Cloud FL</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="grid2">
                         <div class="field" style="margin-top:0">
                             <label for="fCategory">Category</label>
@@ -993,6 +1085,54 @@
             }
             ['fCategory', 'fCities', 'fTerms', 'fMax'].forEach(function (id) {
                 $(id).addEventListener('input', renderCast);
+            });
+
+            /* ---------- presets ---------- */
+            var indyCities = [
+                'Indianapolis IN', 'Carmel IN', 'Fishers IN', 'Noblesville IN', 'Westfield IN',
+                'Zionsville IN', 'Greenwood IN', 'Avon IN', 'Plainfield IN', 'Brownsburg IN',
+                'Speedway IN', 'Lawrence IN', 'Beech Grove IN', 'Greenfield IN', 'Franklin IN',
+                'Whitestown IN', 'McCordsville IN', 'Cicero IN', 'Danville IN', 'New Palestine IN'
+            ];
+
+            var orlandoCities = [
+                'Orlando FL', 'Winter Park FL', 'Kissimmee FL', 'Lake Mary FL', 'Sanford FL',
+                'Altamonte Springs FL', 'Winter Garden FL', 'Oviedo FL', 'Apopka FL', 'Casselberry FL',
+                'Maitland FL', 'Longwood FL', 'Ocoee FL', 'Windermere FL', 'Winter Springs FL',
+                'Clermont FL', 'Celebration FL', 'Lake Buena Vista FL', 'Doctor Phillips FL', 'St. Cloud FL'
+            ];
+
+            $('fPresetCategory').addEventListener('change', function () {
+                if (this.value) {
+                    $('fCategory').value = this.value;
+                    renderCast();
+                }
+            });
+
+            $('fPresetCity').addEventListener('change', function () {
+                var val = this.value;
+                if (!val) return;
+
+                var currentText = $('fCities').value.trim();
+                var currentList = currentText ? currentText.split('\n') : [];
+
+                if (val === 'LOAD_ALL_INDY') {
+                    indyCities.forEach(function (c) {
+                        if (currentList.indexOf(c) === -1) currentList.push(c);
+                    });
+                } else if (val === 'LOAD_ALL_ORLANDO') {
+                    orlandoCities.forEach(function (c) {
+                        if (currentList.indexOf(c) === -1) currentList.push(c);
+                    });
+                } else {
+                    if (currentList.indexOf(val) === -1) {
+                        currentList.push(val);
+                    }
+                }
+
+                $('fCities').value = currentList.join('\n');
+                renderCast();
+                this.value = ''; // Reset select back to placeholder
             });
 
             /* ---------- endpoint ---------- */
