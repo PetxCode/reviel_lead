@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviel · Lead Currents</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23182631'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-style='italic' font-size='20' font-weight='700' fill='%23F2F6F8' letter-spacing='-0.5'%3ER%3C/text%3E%3C/svg%3E">
-    <link rel="alternate icon"
-        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAA30lEQVQ4jZ2Tuw3CMBCGv0QMEQ2UjMAIjMAIGYEBGIERGIERGIERMgIjMAJPkCJFiB/FjmMnToA7ybLv/r/z2YmZWQGYSUoknSX1ko6SPkneSe0kHSUdJK0lLSSdJS0lnSStJa0kHSSdJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JB0kLSStJC0kLSQ9JC0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JB0kLSQ9JC0kLSQ9JC0kLSQvDdcqEAAAAASUVORK5CYII=">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232E7C72'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-style='italic' font-size='20' font-weight='700' fill='%23F2F6F8' letter-spacing='-0.5'%3ER%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,18 +14,29 @@
         rel="stylesheet">
     <style>
         :root {
-            --ink: #16222C;
-            --sea: #2E4557;
-            --current: #3E6B7E;
-            --mist: #E8EDF0;
-            --paper: #FBFCFC;
-            --line: #D4DDE2;
-            --faint: #6B7C88;
+            --ink: #15332E;
+            --ink-2: #22453F;
+            --sea: #2E7C72;
+            /* primary action / accent */
+            --current: #2E7C72;
+            /* focus + eyebrow */
+            --teal-deep: #1F5E56;
+            --mist: #E4EBEA;
+            /* fallback bg */
+            --paper: rgba(255, 255, 255, .74);
+            --line: rgba(21, 51, 46, .12);
+            --line-soft: rgba(21, 51, 46, .07);
+            --faint: #64746E;
             --kelp: #3F7255;
-            --amber: #A8722F;
+            --amber: #8C5E1E;
             --rose: #9C4A3C;
-            --shadow: 0 1px 2px rgba(22, 34, 44, .05), 0 8px 28px rgba(22, 34, 44, .07);
-            --r: 10px;
+            --glass: rgba(255, 255, 255, .58);
+            --glass-border: rgba(255, 255, 255, .72);
+            --shadow: 0 1px 2px rgba(18, 48, 42, .05), 0 10px 34px rgba(18, 48, 42, .10);
+            --r: 14px;
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'Instrument Sans', system-ui, sans-serif;
+            --mono: 'IBM Plex Mono', ui-monospace, monospace;
         }
 
         * {
@@ -42,15 +50,37 @@
         }
 
         body {
-            font-family: 'Instrument Sans', system-ui, sans-serif;
+            font-family: var(--sans);
             background: var(--mist);
             color: var(--ink);
             min-height: 100vh;
             line-height: 1.55;
+            position: relative;
         }
 
         ::selection {
-            background: #C9DAE2
+            background: #BFE0D9
+        }
+
+        /* ---------- coastal scene ---------- */
+        .scene {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            background:
+                radial-gradient(680px 420px at 62% 18%, rgba(255, 244, 224, .85), rgba(255, 244, 224, 0) 60%),
+                linear-gradient(180deg, #FCF2E2 0%, #F7E4CC 15%, #F1DAC5 29%, #DFE7D8 42%, #AEDDD3 52%, #7FCFC3 61%, #55B7AC 70%, #4CB0A6 78%, #CFE6DA 88%, #ECE2CF 100%);
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .05;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")
         }
 
         /* ---------- shell ---------- */
@@ -60,68 +90,97 @@
         }
 
         .rail {
-            width: 236px;
-            flex: 0 0 236px;
-            background: linear-gradient(178deg, #182631 0%, #22384A 78%, #2A455B 100%);
-            color: #DCE6EC;
+            width: 244px;
+            flex: 0 0 244px;
+            background: linear-gradient(180deg, rgba(19, 40, 31, .94) 0%, rgba(24, 54, 47, .90) 70%, rgba(31, 94, 86, .86) 100%);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            color: #DCEAE4;
             display: flex;
             flex-direction: column;
-            padding: 32px 20px 24px;
+            padding: 30px 20px 24px;
             position: sticky;
             top: 0;
             height: 100vh;
+            border-right: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px
+        }
+
+        .mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--sea);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-style: italic;
+            font-size: 18px;
+            flex: 0 0 auto;
+            box-shadow: 0 2px 10px rgba(31, 94, 86, .5);
         }
 
         .wordmark {
-            font-family: 'Fraunces', serif;
+            font-family: var(--serif);
             font-weight: 500;
             font-style: italic;
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             letter-spacing: .01em;
             color: #F2F6F8;
         }
 
         .console-name {
-            font-size: .68rem;
-            letter-spacing: .22em;
+            font-size: .66rem;
+            letter-spacing: .24em;
             text-transform: uppercase;
-            color: #8FA6B4;
-            margin-top: 4px;
+            color: #8FB0A6;
+            margin-top: 12px;
         }
 
         .rail nav {
-            margin-top: 44px;
+            margin-top: 40px;
             display: flex;
             flex-direction: column;
             gap: 4px
         }
 
-        .rail nav button {
+        .rail nav button,
+        .rail nav a.nav-link {
             all: unset;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: 8px;
+            gap: 11px;
+            padding: 10px 13px;
+            border-radius: 9px;
             font-size: .92rem;
-            color: #B9C9D3;
+            color: #AFC6BD;
+            text-decoration: none;
             transition: background .15s, color .15s;
         }
 
-        .rail nav button:hover {
+        .rail nav button:hover,
+        .rail nav a.nav-link:hover {
             background: rgba(255, 255, 255, .06);
-            color: #EDF3F6
+            color: #EDF6F1
         }
 
         .rail nav button[aria-current="page"] {
-            background: rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .12);
             color: #FFFFFF;
             font-weight: 500
         }
 
         .rail nav button:focus-visible {
-            outline: 2px solid #9CC1D2;
+            outline: 2px solid #9CD2C4;
             outline-offset: 2px
         }
 
@@ -136,8 +195,8 @@
 
         .rail-foot {
             margin-top: auto;
-            font-size: .75rem;
-            color: #7E93A1
+            font-size: .74rem;
+            color: #83A197
         }
 
         .env-chip {
@@ -148,16 +207,16 @@
             padding: 4px 10px;
             border: 1px solid rgba(255, 255, 255, .18);
             border-radius: 999px;
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .7rem;
-            color: #C6D5DD;
+            color: #C6DAD2;
         }
 
         .env-chip .dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #7FB08F
+            background: #7FB89F
         }
 
         .env-chip.test .dot {
@@ -182,30 +241,32 @@
 
         /* ---------- type ---------- */
         h1 {
-            font-family: 'Fraunces', serif;
+            font-family: var(--serif);
             font-weight: 500;
-            font-size: 2.35rem;
-            letter-spacing: -.01em;
-            line-height: 1.12;
+            font-size: 2.5rem;
+            letter-spacing: -.015em;
+            line-height: 1.08;
+            color: var(--ink);
         }
 
         .lede {
-            color: var(--faint);
-            margin-top: 10px;
+            color: var(--ink-2);
+            margin-top: 12px;
             max-width: 56ch;
-            font-size: .98rem
+            font-size: 1rem
         }
 
         h2 {
-            font-family: 'Fraunces', serif;
+            font-family: var(--serif);
             font-weight: 500;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 4px;
+            color: var(--ink);
         }
 
         .eyebrow {
             font-size: .68rem;
-            letter-spacing: .2em;
+            letter-spacing: .22em;
             text-transform: uppercase;
             color: var(--current);
             font-weight: 600;
@@ -214,12 +275,20 @@
 
         /* ---------- cards & forms ---------- */
         .card {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: var(--r);
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(1.25);
+            -webkit-backdrop-filter: blur(20px) saturate(1.25);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
             box-shadow: var(--shadow);
             padding: 28px;
             margin-top: 28px;
+        }
+
+        @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))) {
+            .card {
+                background: rgba(255, 255, 255, .92)
+            }
         }
 
         .card>.hint {
@@ -240,9 +309,11 @@
 
         .field label {
             display: block;
-            font-weight: 500;
-            font-size: .88rem;
-            margin-bottom: 6px
+            font-weight: 600;
+            font-size: .82rem;
+            letter-spacing: .02em;
+            margin-bottom: 6px;
+            color: var(--teal-deep);
         }
 
         .field .sub {
@@ -260,14 +331,14 @@
         textarea,
         select {
             width: 100%;
-            padding: 10px 12px;
+            padding: 11px 13px;
             border: 1px solid var(--line);
-            border-radius: 8px;
-            background: #fff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .82);
             font: inherit;
             font-size: .92rem;
             color: var(--ink);
-            transition: border-color .15s, box-shadow .15s;
+            transition: border-color .15s, box-shadow .15s, background .15s;
         }
 
         textarea {
@@ -276,7 +347,7 @@
         }
 
         .mono {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .85rem
         }
 
@@ -285,7 +356,8 @@
         select:focus {
             outline: none;
             border-color: var(--current);
-            box-shadow: 0 0 0 3px rgba(62, 107, 126, .15);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(46, 124, 114, .15);
         }
 
         .btn {
@@ -295,7 +367,7 @@
             align-items: center;
             gap: 8px;
             padding: 11px 22px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 500;
             font-size: .92rem;
             background: var(--sea);
@@ -304,7 +376,7 @@
         }
 
         .btn:hover {
-            background: #3A576D
+            background: var(--teal-deep)
         }
 
         .btn:active {
@@ -322,27 +394,30 @@
         }
 
         .btn.ghost {
-            background: transparent;
-            color: var(--sea);
+            background: rgba(255, 255, 255, .55);
+            color: var(--teal-deep);
             border: 1px solid var(--line)
         }
 
         .btn.ghost:hover {
-            background: #EFF3F5
+            background: rgba(255, 255, 255, .85)
         }
 
         .btn.small {
-            padding: 7px 14px;
+            padding: 8px 15px;
             font-size: .83rem
         }
 
         /* ---------- the cast (signature) ---------- */
         .cast {
             margin-top: 28px;
-            border: 1px solid var(--line);
-            border-radius: var(--r);
-            background: linear-gradient(180deg, #F2F6F7, #EBF0F2);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .48);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .cast-head {
@@ -358,7 +433,7 @@
         }
 
         .cast-tally {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .8rem;
             color: var(--faint)
         }
@@ -374,20 +449,20 @@
             gap: 14px;
             align-items: baseline;
             padding: 7px 22px;
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .82rem;
-            color: var(--sea);
+            color: var(--teal-deep);
             border-left: 2px solid transparent;
             animation: drift .3s ease both;
         }
 
         .cast-line:hover {
-            background: rgba(62, 107, 126, .06);
+            background: rgba(46, 124, 114, .08);
             border-left-color: var(--current)
         }
 
         .cast-line .idx {
-            color: #A3B4BE;
+            color: #9CB2AB;
             flex: 0 0 26px;
             text-align: right
         }
@@ -424,10 +499,12 @@
         /* ---------- status / results ---------- */
         .status {
             margin-top: 22px;
-            border-radius: var(--r);
+            border-radius: 14px;
             padding: 18px 22px;
             font-size: .9rem;
-            display: none
+            display: none;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .status.show {
@@ -435,21 +512,21 @@
         }
 
         .status.ok {
-            background: #EDF4EF;
-            border: 1px solid #C4DACB;
-            color: #2E5540
+            background: rgba(231, 242, 235, .85);
+            border: 1px solid #BCD6C5;
+            color: #2C5540
         }
 
         .status.err {
-            background: #F7EEEC;
-            border: 1px solid #E1C6BF;
-            color: #7C3A2E
+            background: rgba(247, 236, 233, .85);
+            border: 1px solid #E0C4BC;
+            color: #7C382C
         }
 
         .status.busy {
-            background: #EFF3F5;
+            background: rgba(240, 246, 246, .85);
             border: 1px solid var(--line);
-            color: var(--sea)
+            color: var(--teal-deep)
         }
 
         .status h3 {
@@ -459,7 +536,7 @@
         }
 
         .status pre {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .78rem;
             margin-top: 10px;
             white-space: pre-wrap;
@@ -476,16 +553,17 @@
         }
 
         .summary-cell {
-            background: #fff;
+            background: rgba(255, 255, 255, .7);
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 12px 14px
         }
 
         .summary-cell .n {
-            font-family: 'Fraunces', serif;
-            font-size: 1.5rem;
-            font-weight: 500
+            font-family: var(--serif);
+            font-size: 1.55rem;
+            font-weight: 500;
+            color: var(--ink)
         }
 
         .summary-cell .l {
@@ -501,7 +579,7 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            border: 2px solid rgba(46, 69, 87, .25);
+            border: 2px solid rgba(46, 124, 114, .25);
             border-top-color: var(--sea);
             animation: spin .8s linear infinite;
             vertical-align: -2px;
@@ -535,7 +613,7 @@
 
         td {
             padding: 11px 12px;
-            border-bottom: 1px solid #E6ECEF;
+            border-bottom: 1px solid var(--line-soft);
             vertical-align: top
         }
 
@@ -552,12 +630,12 @@
         }
 
         .pill.ok {
-            background: #E4EFE8;
+            background: #E1EEE6;
             color: var(--kelp)
         }
 
         .pill.err {
-            background: #F3E4E0;
+            background: #F2E1DC;
             color: var(--rose)
         }
 
@@ -568,9 +646,9 @@
         }
 
         .empty-state .fr {
-            font-family: 'Fraunces', serif;
-            font-size: 1.15rem;
-            color: var(--sea);
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--teal-deep);
             font-style: italic
         }
 
@@ -579,10 +657,10 @@
             margin-top: 16px;
             padding: 14px 18px;
             border-left: 3px solid var(--current);
-            background: #EFF4F6;
-            border-radius: 0 8px 8px 0;
+            background: rgba(239, 245, 244, .7);
+            border-radius: 0 10px 10px 0;
             font-size: .85rem;
-            color: #3B5262;
+            color: #3A5249;
         }
 
         .row {
@@ -602,7 +680,7 @@
         .seg {
             display: inline-flex;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden
         }
 
@@ -612,7 +690,7 @@
             padding: 9px 18px;
             font-size: .88rem;
             color: var(--faint);
-            background: #fff;
+            background: rgba(255, 255, 255, .6);
         }
 
         .seg button[aria-pressed="true"] {
@@ -652,7 +730,7 @@
         }
 
         .token-meta {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: .78rem;
             margin-top: 8px;
             color: var(--faint)
@@ -682,6 +760,10 @@
                 padding: 16px 20px
             }
 
+            .console-name {
+                display: none
+            }
+
             .rail nav {
                 margin: 0 0 0 auto;
                 flex-direction: row
@@ -692,7 +774,7 @@
             }
 
             main {
-                padding: 32px 20px 60px
+                padding: 34px 22px 60px
             }
 
             .grid2,
@@ -704,12 +786,15 @@
 </head>
 
 <body>
+    <div class="scene"></div>
+    <div class="grain"></div>
+
     <div class="shell">
 
         <!-- ======================= rail ======================= -->
         <aside class="rail">
             <div>
-                <div class="wordmark">Reviel</div>
+                <div class="brand"><span class="mark">R</span><span class="wordmark">Reviel</span></div>
                 <div class="console-name">Lead Currents</div>
             </div>
             <nav aria-label="Pages">
@@ -735,6 +820,14 @@
                     </svg>
                     Settings
                 </button>
+                <a href="sending_email.html" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    Outreach Desk
+                </a>
             </nav>
             <div class="rail-foot">
                 Connected workflow<br>
@@ -748,7 +841,7 @@
             <!-- ======================= RUN ======================= -->
             <section class="page active" id="page-run">
                 <div class="eyebrow">B2B lead research</div>
-                <h1>Cast a search.</h1>
+                <h1>Start a search.</h1>
                 <p class="lede">One category, any number of cities. The workflow scrapes Google Maps, pulls contact
                     details from each website, and writes only tool-returned data into the Reviel CRM sheet.</p>
 
