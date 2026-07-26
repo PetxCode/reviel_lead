@@ -237,6 +237,7 @@
     .shell {
       flex-direction: column;
     }
+
     .rail {
       width: 100%;
       flex: none;
@@ -247,16 +248,20 @@
       gap: 18px;
       padding: 16px 20px;
     }
+
     .console-name {
       display: none;
     }
+
     .rail nav {
       margin: 0 0 0 auto;
       flex-direction: row;
     }
+
     .rail-foot {
       display: none;
     }
+
     main.desk-main {
       padding: 34px 22px 60px;
     }
@@ -1125,7 +1130,8 @@
         Settings
       </a>
       <a href="sending_email.html" class="nav-link" aria-current="page">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round">
           <rect x="2" y="4" width="20" height="16" rx="2" />
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
         </svg>
@@ -1156,366 +1162,372 @@
 
       <!-- HERO -->
       <header class="glass hero">
-    <div class="eyebrow">Reviel · Partnership Outreach</div>
-    <h1>The Outreach Desk</h1>
-    <p class="lede">Load a sequence, choose which letter to send, and read every recipient before it goes. Each message
-      stays personal, on brand, and in your hands.</p>
-    <div class="innernote">
-      <strong>Before you send.</strong> Confirm the sending domain has SPF, DKIM, and DMARC in place, and that the inbox
-      has been warmed. Send from a dedicated outreach domain rather than your primary one, and post in small batches
-      rather than all at once. Flagged rows are held back until their address is checked.
-    </div>
-  </header>
-
-  <!-- CARD 1 -->
-  <section class="glass card">
-    <div class="card-head">
-      <span class="card-num">1</span>
-      <div>
-        <div class="card-title">Load the sequence</div>
-        <div class="card-desc">An .xlsx with organisations, contact emails, and drafted letters.</div>
-      </div>
-      <span class="card-meta" id="loadMeta"></span>
-    </div>
-    <div class="card-body">
-      <label class="drop" for="file">
-        <input id="file" type="file" accept=".xlsx,.xls">
-        <div class="k">Choose a sequence workbook</div>
-        <div class="d">Drag a file here, or click to browse</div>
-      </label>
-      <div><span class="fname" id="fname"></span></div>
-      <p id="parseErr" class="parseErr hidden"></p>
-    </div>
-  </section>
-
-  <!-- CARD 2 -->
-  <section class="glass card hidden" id="step2">
-    <div class="card-head">
-      <span class="card-num">2</span>
-      <div>
-        <div class="card-title">Sender and letter</div>
-        <div class="card-desc">Who it comes from, and which letter in the sequence is active.</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="grid2">
-        <div class="field">
-          <label for="sender">Sender address</label>
-          <input id="sender" type="email" value="peter.oti@reviel.app" placeholder="peter.oti@reviel.app"
-            autocomplete="off">
-          <p class="hint">A drafted message opens from your mail client's default account, so choose the right one in
-            the compose window. Direct send and the CSV export both honour this field.</p>
+        <div class="eyebrow">Reviel · Partnership Outreach</div>
+        <h1>The Outreach Desk</h1>
+        <p class="lede">Load a sequence, choose which letter to send, and read every recipient before it goes. Each
+          message
+          stays personal, on brand, and in your hands.</p>
+        <div class="innernote">
+          <strong>Before you send.</strong> Confirm the sending domain has SPF, DKIM, and DMARC in place, and that the
+          inbox
+          has been warmed. Send from a dedicated outreach domain rather than your primary one, and post in small batches
+          rather than all at once. Flagged rows are held back until their address is checked.
         </div>
-        <div class="field">
-          <label>Which letter is active</label>
-          <div class="stages" id="stages">
-            <div class="stage" data-stage="1" role="button" tabindex="0" aria-pressed="true"><span
-                class="num">1</span><span><span class="k">Rapport</span><span class="c">Day 0</span></span></div>
-            <div class="stage" data-stage="2" role="button" tabindex="0" aria-pressed="false"><span
-                class="num">2</span><span><span class="k">Offer</span><span class="c">Day 4 to 5</span></span></div>
-            <div class="stage" data-stage="3" role="button" tabindex="0" aria-pressed="false"><span
-                class="num">3</span><span><span class="k">Close</span><span class="c">Day 9 to 10</span></span></div>
+      </header>
+
+      <!-- CARD 1 -->
+      <section class="glass card">
+        <div class="card-head">
+          <span class="card-num">1</span>
+          <div>
+            <div class="card-title">Load the sequence</div>
+            <div class="card-desc">An .xlsx with organisations, contact emails, and drafted letters.</div>
+          </div>
+          <span class="card-meta" id="loadMeta"></span>
+        </div>
+        <div class="card-body">
+          <label class="drop" for="file">
+            <input id="file" type="file" accept=".xlsx,.xls">
+            <div class="k">Choose a sequence workbook</div>
+            <div class="d">Drag a file here, or click to browse</div>
+          </label>
+          <div><span class="fname" id="fname"></span></div>
+          <p id="parseErr" class="parseErr hidden"></p>
+        </div>
+      </section>
+
+      <!-- CARD 2 -->
+      <section class="glass card hidden" id="step2">
+        <div class="card-head">
+          <span class="card-num">2</span>
+          <div>
+            <div class="card-title">Sender and letter</div>
+            <div class="card-desc">Who it comes from, and which letter in the sequence is active.</div>
           </div>
         </div>
-      </div>
-
-      <div class="field" style="margin-top:22px">
-        <label for="footer">Compliance footer, appended to letters 1 and 2</label>
-        <textarea id="footer"
-          placeholder="Reviel, 123 Example Ave, Suite 100, City, ST 00000&#10;Not interested in hearing from us? Reply with the word remove and we will not write again."></textarea>
-        <p class="hint">A physical mailing address and an opt-out line are required by law on the first two letters.
-          Leave blank only if your drafts already contain them.</p>
-      </div>
-
-      <details class="optional">
-        <summary><span>Direct send</span><span class="tag-opt">optional</span><span class="chev">›</span></summary>
-        <div class="opt-inner">
-          <p class="hint" style="margin-bottom:15px">Direct send relays each letter through EmailJS without opening your
-            mail client. It suits small, checked batches. EmailJS is built for low-volume mail, so review the provider's
-            terms and your sending limits before using it at scale. Left blank, the desk opens drafts in your mail
-            client instead. Credentials come from your <a href="https://dashboard.emailjs.com/" target="_blank"
-              rel="noopener">EmailJS dashboard</a>.</p>
+        <div class="card-body">
           <div class="grid2">
-            <div class="field"><label for="ejsPublic">Public key</label><input id="ejsPublic" type="text"
-                placeholder="user_xxxxxxx" autocomplete="off"></div>
-            <div class="field"><label for="ejsService">Service ID</label><input id="ejsService" type="text"
-                placeholder="service_xxxxxxx" autocomplete="off"></div>
+            <div class="field">
+              <label for="sender">Sender address</label>
+              <input id="sender" type="email" value="peter.oti@reviel.app" placeholder="peter.oti@reviel.app"
+                autocomplete="off">
+              <p class="hint">A drafted message opens from your mail client's default account, so choose the right one
+                in
+                the compose window. Direct send and the CSV export both honour this field.</p>
+            </div>
+            <div class="field">
+              <label>Which letter is active</label>
+              <div class="stages" id="stages">
+                <div class="stage" data-stage="1" role="button" tabindex="0" aria-pressed="true"><span
+                    class="num">1</span><span><span class="k">Rapport</span><span class="c">Day 0</span></span></div>
+                <div class="stage" data-stage="2" role="button" tabindex="0" aria-pressed="false"><span
+                    class="num">2</span><span><span class="k">Offer</span><span class="c">Day 4 to 5</span></span></div>
+                <div class="stage" data-stage="3" role="button" tabindex="0" aria-pressed="false"><span
+                    class="num">3</span><span><span class="k">Close</span><span class="c">Day 9 to 10</span></span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="field" style="margin-top:16px"><label for="ejsTemplate">Template ID</label><input id="ejsTemplate"
-              type="text" placeholder="template_xxxxxxx" autocomplete="off"></div>
+
+          <div class="field" style="margin-top:22px">
+            <label for="footer">Compliance footer, appended to letters 1 and 2</label>
+            <textarea id="footer"
+              placeholder="Reviel, 123 Example Ave, Suite 100, City, ST 00000&#10;Not interested in hearing from us? Reply with the word remove and we will not write again."></textarea>
+            <p class="hint">A physical mailing address and an opt-out line are required by law on the first two letters.
+              Leave blank only if your drafts already contain them.</p>
+          </div>
+
+          <details class="optional">
+            <summary><span>Direct send</span><span class="tag-opt">optional</span><span class="chev">›</span></summary>
+            <div class="opt-inner">
+              <p class="hint" style="margin-bottom:15px">Direct send relays each letter through EmailJS without opening
+                your
+                mail client. It suits small, checked batches. EmailJS is built for low-volume mail, so review the
+                provider's
+                terms and your sending limits before using it at scale. Left blank, the desk opens drafts in your mail
+                client instead. Credentials come from your <a href="https://dashboard.emailjs.com/" target="_blank"
+                  rel="noopener">EmailJS dashboard</a>.</p>
+              <div class="grid2">
+                <div class="field"><label for="ejsPublic">Public key</label><input id="ejsPublic" type="text"
+                    placeholder="user_xxxxxxx" autocomplete="off"></div>
+                <div class="field"><label for="ejsService">Service ID</label><input id="ejsService" type="text"
+                    placeholder="service_xxxxxxx" autocomplete="off"></div>
+              </div>
+              <div class="field" style="margin-top:16px"><label for="ejsTemplate">Template ID</label><input
+                  id="ejsTemplate" type="text" placeholder="template_xxxxxxx" autocomplete="off"></div>
+            </div>
+          </details>
         </div>
-      </details>
-    </div>
-  </section>
+      </section>
 
-  <!-- CARD 3 -->
-  <section class="glass card hidden" id="step3">
-    <div class="card-head">
-      <span class="card-num">3</span>
-      <div>
-        <div class="card-title">Review recipients</div>
-        <div class="card-desc">Read each letter, and choose who receives it.</div>
+      <!-- CARD 3 -->
+      <section class="glass card hidden" id="step3">
+        <div class="card-head">
+          <span class="card-num">3</span>
+          <div>
+            <div class="card-title">Review recipients</div>
+            <div class="card-desc">Read each letter, and choose who receives it.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="counts" id="counts"></div>
+          <div class="selrow">
+            <button class="ghost" id="selClean">Select clean only</button>
+            <button class="ghost" id="selAll">Select all</button>
+            <button class="ghost" id="selNone">Clear</button>
+          </div>
+          <div class="ledger" id="ledger"></div>
+        </div>
+      </section>
+
+      <!-- ACTION BAR -->
+      <div class="bar hidden" id="bar">
+        <button class="solid" id="sendAllBtn">Send selected letters</button>
+        <button class="ghost" id="openNext">Open next draft</button>
+        <button class="ghost" id="exportCsv">Export CSV</button>
+        <div class="spacer"></div>
+        <p class="status" id="statusHint">Direct send relays through EmailJS when credentials are set. Otherwise, drafts
+          open one at a time in your mail client.</p>
       </div>
+
+      <p class="foot">Reviel · your body knows before your mind does</p>
     </div>
-    <div class="card-body">
-      <div class="counts" id="counts"></div>
-      <div class="selrow">
-        <button class="ghost" id="selClean">Select clean only</button>
-        <button class="ghost" id="selAll">Select all</button>
-        <button class="ghost" id="selNone">Clear</button>
-      </div>
-      <div class="ledger" id="ledger"></div>
-    </div>
-  </section>
 
-  <!-- ACTION BAR -->
-  <div class="bar hidden" id="bar">
-    <button class="solid" id="sendAllBtn">Send selected letters</button>
-    <button class="ghost" id="openNext">Open next draft</button>
-    <button class="ghost" id="exportCsv">Export CSV</button>
-    <div class="spacer"></div>
-    <p class="status" id="statusHint">Direct send relays through EmailJS when credentials are set. Otherwise, drafts
-      open one at a time in your mail client.</p>
-  </div>
+    <div class="toast" id="toast"></div>
 
-  <p class="foot">Reviel · your body knows before your mind does</p>
-</div>
+    <script>
+      (function () {
+        var COLS = {
+          org: "Organization Name", city: "City", state: "State", email: "Contact Email",
+          s: function (n) { return "Email " + n + " Subject"; }, b: function (n) { return "Email " + n + " Body"; }, flags: "Data Quality Flags"
+        };
+        var state = { rows: [], stage: 1, selected: {}, queue: [], qi: 0, queueKey: "" };
+        var $ = function (id) { return document.getElementById(id); };
+        function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+        function toast(m) { var t = $("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(t._t); t._t = setTimeout(function () { t.classList.remove("show"); }, 1800); }
+        var store = { get: function (k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { } } };
 
-<div class="toast" id="toast"></div>
-
-<script>
-  (function () {
-    var COLS = {
-      org: "Organization Name", city: "City", state: "State", email: "Contact Email",
-      s: function (n) { return "Email " + n + " Subject"; }, b: function (n) { return "Email " + n + " Body"; }, flags: "Data Quality Flags"
-    };
-    var state = { rows: [], stage: 1, selected: {}, queue: [], qi: 0, queueKey: "" };
-    var $ = function (id) { return document.getElementById(id); };
-    function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
-    function toast(m) { var t = $("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(t._t); t._t = setTimeout(function () { t.classList.remove("show"); }, 1800); }
-    var store = { get: function (k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { } } };
-
-    function findCol(row, cands) {
-      var keys = Object.keys(row);
-      for (var i = 0; i < cands.length; i++) { var c = cands[i].toLowerCase(); for (var j = 0; j < keys.length; j++) { if (keys[j].toLowerCase().trim() === c) return keys[j]; } }
-      for (var i = 0; i < cands.length; i++) { var c = cands[i].toLowerCase(); for (var j = 0; j < keys.length; j++) { if (keys[j].toLowerCase().trim().indexOf(c) !== -1) return keys[j]; } }
-      return null;
-    }
-    function loaded() { return state.rows.length > 0; }
-    function updateProgress() {
-      var pct = 0;
-      if (loaded()) {
-        var sel = 0; state.rows.forEach(function (r, i) { if (state.selected[i]) sel++; });
-        pct = Math.round(40 + 60 * (state.rows.length ? sel / state.rows.length : 0));
-      }
-      $("progFill").style.width = pct + "%"; $("progPct").textContent = pct + "%";
-    }
-
-    $("file").addEventListener("change", function (e) {
-      var f = e.target.files[0]; if (!f) return;
-      $("fname").textContent = f.name; $("navStatus").textContent = f.name;
-      var reader = new FileReader();
-      reader.onload = function (ev) {
-        try {
-          var wb = XLSX.read(new Uint8Array(ev.target.result), { type: "array" });
-          var json = null;
-          if (wb.SheetNames.indexOf("Sequences") >= 0) json = XLSX.utils.sheet_to_json(wb.Sheets["Sequences"], { defval: "" });
-          if (!json || !json.length) { for (var i = 0; i < wb.SheetNames.length; i++) { var j = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[i]], { defval: "" }); if (j && j.length) { json = j; break; } } }
-          if (!json || !json.length) throw new Error("empty");
-          var sample = json[0];
-          var colOrg = findCol(sample, ["Organization Name", "Organization", "Company", "Name", "Business"]) || Object.keys(sample)[0];
-          var colEmail = findCol(sample, ["Contact Email", "Email Address", "Email", "Mail"]) || Object.keys(sample)[1];
-          COLS = {
-            org: colOrg, email: colEmail,
-            city: findCol(sample, ["City", "Town", "Location"]) || "",
-            state: findCol(sample, ["State", "Province", "Region"]) || "",
-            flags: findCol(sample, ["Data Quality Flags", "Flags", "Status"]) || "",
-            s: function (n) { return findCol(sample, ["Email " + n + " Subject", "Subject " + n, "Subject", "Title"]) || colOrg; },
-            b: function (n) { return findCol(sample, ["Email " + n + " Body", "Body " + n, "Body", "Message", "Content"]) || ""; }
-          };
-          state.rows = json.filter(function (r) { return String(r[colOrg] || r[colEmail] || "").trim() !== ""; });
-          state.selected = {};
-          buildRows();
-          $("parseErr").classList.add("hidden");
-          $("loadMeta").textContent = state.rows.length + " organisations";
-          $("step2").classList.remove("hidden"); $("step3").classList.remove("hidden"); $("bar").classList.remove("hidden");
-        } catch (err) {
-          var p = $("parseErr"); p.textContent = "This file could not be read as a sequence. Make sure it has columns for the organisation, a contact email, and the drafted letters."; p.classList.remove("hidden");
+        function findCol(row, cands) {
+          var keys = Object.keys(row);
+          for (var i = 0; i < cands.length; i++) { var c = cands[i].toLowerCase(); for (var j = 0; j < keys.length; j++) { if (keys[j].toLowerCase().trim() === c) return keys[j]; } }
+          for (var i = 0; i < cands.length; i++) { var c = cands[i].toLowerCase(); for (var j = 0; j < keys.length; j++) { if (keys[j].toLowerCase().trim().indexOf(c) !== -1) return keys[j]; } }
+          return null;
         }
-      };
-      reader.readAsArrayBuffer(f);
-    });
+        function loaded() { return state.rows.length > 0; }
+        function updateProgress() {
+          var pct = 0;
+          if (loaded()) {
+            var sel = 0; state.rows.forEach(function (r, i) { if (state.selected[i]) sel++; });
+            pct = Math.round(40 + 60 * (state.rows.length ? sel / state.rows.length : 0));
+          }
+          $("progFill").style.width = pct + "%"; $("progPct").textContent = pct + "%";
+        }
 
-    document.querySelectorAll(".stage").forEach(function (el) {
-      function pick() {
-        state.stage = parseInt(el.getAttribute("data-stage"), 10);
-        document.querySelectorAll(".stage").forEach(function (s) { s.setAttribute("aria-pressed", s === el ? "true" : "false"); }); buildRows();
-      }
-      el.addEventListener("click", pick);
-      el.addEventListener("keydown", function (ev) { if (ev.key === " " || ev.key === "Enter") { ev.preventDefault(); pick(); } });
-    });
-    $("footer").addEventListener("input", buildRows);
+        $("file").addEventListener("change", function (e) {
+          var f = e.target.files[0]; if (!f) return;
+          $("fname").textContent = f.name; $("navStatus").textContent = f.name;
+          var reader = new FileReader();
+          reader.onload = function (ev) {
+            try {
+              var wb = XLSX.read(new Uint8Array(ev.target.result), { type: "array" });
+              var json = null;
+              if (wb.SheetNames.indexOf("Sequences") >= 0) json = XLSX.utils.sheet_to_json(wb.Sheets["Sequences"], { defval: "" });
+              if (!json || !json.length) { for (var i = 0; i < wb.SheetNames.length; i++) { var j = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[i]], { defval: "" }); if (j && j.length) { json = j; break; } } }
+              if (!json || !json.length) throw new Error("empty");
+              var sample = json[0];
+              var colOrg = findCol(sample, ["Organization Name", "Organization", "Company", "Name", "Business"]) || Object.keys(sample)[0];
+              var colEmail = findCol(sample, ["Contact Email", "Email Address", "Email", "Mail"]) || Object.keys(sample)[1];
+              COLS = {
+                org: colOrg, email: colEmail,
+                city: findCol(sample, ["City", "Town", "Location"]) || "",
+                state: findCol(sample, ["State", "Province", "Region"]) || "",
+                flags: findCol(sample, ["Data Quality Flags", "Flags", "Status"]) || "",
+                s: function (n) { return findCol(sample, ["Email " + n + " Subject", "Subject " + n, "Subject", "Title"]) || colOrg; },
+                b: function (n) { return findCol(sample, ["Email " + n + " Body", "Body " + n, "Body", "Message", "Content"]) || ""; }
+              };
+              state.rows = json.filter(function (r) { return String(r[colOrg] || r[colEmail] || "").trim() !== ""; });
+              state.selected = {};
+              buildRows();
+              $("parseErr").classList.add("hidden");
+              $("loadMeta").textContent = state.rows.length + " organisations";
+              $("step2").classList.remove("hidden"); $("step3").classList.remove("hidden"); $("bar").classList.remove("hidden");
+            } catch (err) {
+              var p = $("parseErr"); p.textContent = "This file could not be read as a sequence. Make sure it has columns for the organisation, a contact email, and the drafted letters."; p.classList.remove("hidden");
+            }
+          };
+          reader.readAsArrayBuffer(f);
+        });
 
-    function isFlagged(r) { var f = String(r[COLS.flags] || "").trim(); return f !== "" && f.toLowerCase() !== "none"; }
-    function subjFor(r) {
-      if (r["custom_subj_" + state.stage] !== undefined) return r["custom_subj_" + state.stage];
-      return String(r[COLS.s(state.stage)] || "");
-    }
-    function bodyFor(r) {
-      if (r["custom_body_" + state.stage] !== undefined) return r["custom_body_" + state.stage];
-      var body = String(r[COLS.b(state.stage)] || "");
-      var foot = $("footer").value.trim();
-      if (foot && (state.stage === 1 || state.stage === 2)) body = body + "\n\n" + foot;
-      return body;
-    }
-    function mailto(r) { return "mailto:" + encodeURIComponent(String(r[COLS.email] || "").trim()) + "?subject=" + encodeURIComponent(subjFor(r)) + "&body=" + encodeURIComponent(bodyFor(r)); }
+        document.querySelectorAll(".stage").forEach(function (el) {
+          function pick() {
+            state.stage = parseInt(el.getAttribute("data-stage"), 10);
+            document.querySelectorAll(".stage").forEach(function (s) { s.setAttribute("aria-pressed", s === el ? "true" : "false"); }); buildRows();
+          }
+          el.addEventListener("click", pick);
+          el.addEventListener("keydown", function (ev) { if (ev.key === " " || ev.key === "Enter") { ev.preventDefault(); pick(); } });
+        });
+        $("footer").addEventListener("input", buildRows);
 
-    function sendIndividual(idx, btn) {
-      var r = state.rows[idx];
-      var email = String(r[COLS.email] || "").trim();
-      if (!email) { toast("No email address for " + r[COLS.org]); return; }
-      var pub = $("ejsPublic").value.trim(), svc = $("ejsService").value.trim(), tpl = $("ejsTemplate").value.trim();
-      if (pub && svc && tpl && window.emailjs) {
-        emailjs.init(pub);
-        if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
-        emailjs.send(svc, tpl, { to_email: email, from_email: $("sender").value.trim(), to_name: String(r[COLS.org] || "").trim(), subject: subjFor(r), message: bodyFor(r) })
-          .then(function () {
-            if (btn) { btn.disabled = false; btn.textContent = "Sent ✓"; }
+        function isFlagged(r) { var f = String(r[COLS.flags] || "").trim(); return f !== "" && f.toLowerCase() !== "none"; }
+        function subjFor(r) {
+          if (r["custom_subj_" + state.stage] !== undefined) return r["custom_subj_" + state.stage];
+          return String(r[COLS.s(state.stage)] || "");
+        }
+        function bodyFor(r) {
+          if (r["custom_body_" + state.stage] !== undefined) return r["custom_body_" + state.stage];
+          var body = String(r[COLS.b(state.stage)] || "");
+          var foot = $("footer").value.trim();
+          if (foot && (state.stage === 1 || state.stage === 2)) body = body + "\n\n" + foot;
+          return body;
+        }
+        function mailto(r) { return "mailto:" + encodeURIComponent(String(r[COLS.email] || "").trim()) + "?subject=" + encodeURIComponent(subjFor(r)) + "&body=" + encodeURIComponent(bodyFor(r)); }
+
+        function sendIndividual(idx, btn) {
+          var r = state.rows[idx];
+          var email = String(r[COLS.email] || "").trim();
+          if (!email) { toast("No email address for " + r[COLS.org]); return; }
+          var pub = $("ejsPublic").value.trim(), svc = $("ejsService").value.trim(), tpl = $("ejsTemplate").value.trim();
+          if (pub && svc && tpl && window.emailjs) {
+            emailjs.init(pub);
+            if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+            emailjs.send(svc, tpl, { to_email: email, from_email: $("sender").value.trim(), to_name: String(r[COLS.org] || "").trim(), subject: subjFor(r), message: bodyFor(r) })
+              .then(function () {
+                if (btn) { btn.disabled = false; btn.textContent = "Sent ✓"; }
+                var slip = $("ledger").children[idx]; if (slip) slip.classList.add("done");
+                toast("Email sent to " + r[COLS.org]);
+              }, function (err) {
+                if (btn) { btn.disabled = false; btn.textContent = "Send email"; }
+                console.error("EmailJS error:", err);
+                toast("Failed to send to " + r[COLS.org]);
+              });
+          } else {
+            window.open(mailto(r), "_blank");
             var slip = $("ledger").children[idx]; if (slip) slip.classList.add("done");
-            toast("Email sent to " + r[COLS.org]);
-          }, function (err) {
-            if (btn) { btn.disabled = false; btn.textContent = "Send email"; }
-            console.error("EmailJS error:", err);
-            toast("Failed to send to " + r[COLS.org]);
+            toast("Opened draft for " + r[COLS.org]);
+          }
+        }
+
+        function buildRows() {
+          var led = $("ledger"); led.innerHTML = "";
+          state.rows.forEach(function (r, idx) {
+            var fl = isFlagged(r);
+            if (!(idx in state.selected)) state.selected[idx] = !fl;
+            var sel = state.selected[idx];
+            var place = [r[COLS.city], r[COLS.state]].filter(Boolean).join(", ");
+            var slip = document.createElement("div");
+            slip.className = "slip" + (fl ? " flagged" : "") + (sel ? "" : " unsel");
+            slip.innerHTML =
+              '<div class="check"><input type="checkbox" ' + (sel ? "checked" : "") + ' data-i="' + idx + '" aria-label="Include ' + esc(r[COLS.org]) + '"></div>' +
+              '<div class="content">' +
+              '<div class="head-line"><span class="seal-num">' + state.stage + '</span><span class="org-name">' + esc(r[COLS.org]) + '</span>' +
+              (place ? '<span class="place">' + esc(place) + '</span>' : '') + (fl ? '<span class="flag-badge">verify</span>' : '') + '</div>' +
+              '<div class="to">' + esc(r[COLS.email]) + '</div>' +
+              '<div style="margin-top:12px"><label style="font-size:11px;font-weight:700;color:var(--teal-deep);display:block;margin-bottom:4px;text-transform:uppercase;">Subject (Editable)</label><input type="text" data-subj="' + idx + '" value="' + esc(subjFor(r)) + '" style="font-family:var(--sans);font-weight:500;"></div>' +
+              '<div style="margin-top:12px"><label style="font-size:11px;font-weight:700;color:var(--teal-deep);display:block;margin-bottom:4px;text-transform:uppercase;">Body Content (Editable)</label><textarea data-body="' + idx + '" style="font-family:var(--sans);font-size:13.5px;min-height:110px;line-height:1.5;">' + esc(bodyFor(r)) + '</textarea></div>' +
+              (fl ? '<div class="flagnote">' + esc(String(r[COLS.flags])) + '</div>' : '') +
+              '</div>' +
+              '<div class="acts">' +
+              '<button class="solid wide" data-sendone="' + idx + '" style="background:var(--teal);color:#fff;">Send single email</button>' +
+              '<a class="link" data-draftlink="' + idx + '" href="' + mailto(r) + '"><button class="ghost wide">Open draft</button></a>' +
+              '<button class="ghost wide" data-copy="' + idx + '">Copy letter</button>' +
+              '</div>';
+            led.appendChild(slip);
           });
-      } else {
-        window.open(mailto(r), "_blank");
-        var slip = $("ledger").children[idx]; if (slip) slip.classList.add("done");
-        toast("Opened draft for " + r[COLS.org]);
-      }
-    }
 
-    function buildRows() {
-      var led = $("ledger"); led.innerHTML = "";
-      state.rows.forEach(function (r, idx) {
-        var fl = isFlagged(r);
-        if (!(idx in state.selected)) state.selected[idx] = !fl;
-        var sel = state.selected[idx];
-        var place = [r[COLS.city], r[COLS.state]].filter(Boolean).join(", ");
-        var slip = document.createElement("div");
-        slip.className = "slip" + (fl ? " flagged" : "") + (sel ? "" : " unsel");
-        slip.innerHTML =
-          '<div class="check"><input type="checkbox" ' + (sel ? "checked" : "") + ' data-i="' + idx + '" aria-label="Include ' + esc(r[COLS.org]) + '"></div>' +
-          '<div class="content">' +
-          '<div class="head-line"><span class="seal-num">' + state.stage + '</span><span class="org-name">' + esc(r[COLS.org]) + '</span>' +
-          (place ? '<span class="place">' + esc(place) + '</span>' : '') + (fl ? '<span class="flag-badge">verify</span>' : '') + '</div>' +
-          '<div class="to">' + esc(r[COLS.email]) + '</div>' +
-          '<div style="margin-top:12px"><label style="font-size:11px;font-weight:700;color:var(--teal-deep);display:block;margin-bottom:4px;text-transform:uppercase;">Subject (Editable)</label><input type="text" data-subj="' + idx + '" value="' + esc(subjFor(r)) + '" style="font-family:var(--sans);font-weight:500;"></div>' +
-          '<div style="margin-top:12px"><label style="font-size:11px;font-weight:700;color:var(--teal-deep);display:block;margin-bottom:4px;text-transform:uppercase;">Body Content (Editable)</label><textarea data-body="' + idx + '" style="font-family:var(--sans);font-size:13.5px;min-height:110px;line-height:1.5;">' + esc(bodyFor(r)) + '</textarea></div>' +
-          (fl ? '<div class="flagnote">' + esc(String(r[COLS.flags])) + '</div>' : '') +
-          '</div>' +
-          '<div class="acts">' +
-          '<button class="solid wide" data-sendone="' + idx + '" style="background:var(--teal);color:#fff;">Send single email</button>' +
-          '<a class="link" data-draftlink="' + idx + '" href="' + mailto(r) + '"><button class="ghost wide">Open draft</button></a>' +
-          '<button class="ghost wide" data-copy="' + idx + '">Copy letter</button>' +
-          '</div>';
-        led.appendChild(slip);
-      });
+          led.querySelectorAll('input[data-subj]').forEach(function (input) {
+            input.addEventListener("input", function () {
+              var i = parseInt(input.getAttribute("data-subj"), 10);
+              state.rows[i]["custom_subj_" + state.stage] = input.value;
+              var draftLink = led.querySelector('[data-draftlink="' + i + '"]');
+              if (draftLink) draftLink.href = mailto(state.rows[i]);
+            });
+          });
 
-      led.querySelectorAll('input[data-subj]').forEach(function (input) {
-        input.addEventListener("input", function () {
-          var i = parseInt(input.getAttribute("data-subj"), 10);
-          state.rows[i]["custom_subj_" + state.stage] = input.value;
-          var draftLink = led.querySelector('[data-draftlink="' + i + '"]');
-          if (draftLink) draftLink.href = mailto(state.rows[i]);
+          led.querySelectorAll('textarea[data-body]').forEach(function (txt) {
+            txt.addEventListener("input", function () {
+              var i = parseInt(txt.getAttribute("data-body"), 10);
+              state.rows[i]["custom_body_" + state.stage] = txt.value;
+              var draftLink = led.querySelector('[data-draftlink="' + i + '"]');
+              if (draftLink) draftLink.href = mailto(state.rows[i]);
+            });
+          });
+
+          led.querySelectorAll('[data-sendone]').forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var idx = parseInt(btn.getAttribute("data-sendone"), 10);
+              sendIndividual(idx, btn);
+            });
+          });
+
+          led.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+            cb.addEventListener("change", function () { var i = parseInt(cb.getAttribute("data-i"), 10); state.selected[i] = cb.checked; cb.closest(".slip").classList.toggle("unsel", !cb.checked); updateCounts(); });
+          });
+          led.querySelectorAll('[data-copy]').forEach(function (btn) {
+            btn.addEventListener("click", function () { var r = state.rows[parseInt(btn.getAttribute("data-copy"), 10)]; if (navigator.clipboard) navigator.clipboard.writeText(subjFor(r) + "\n\n" + bodyFor(r)); toast("Letter copied"); });
+          });
+          updateCounts();
+        }
+
+        function updateCounts() {
+          var sel = 0, flaggedSel = 0; state.rows.forEach(function (r, i) { if (state.selected[i]) { sel++; if (isFlagged(r)) flaggedSel++; } });
+          var total = state.rows.length, ft = state.rows.filter(isFlagged).length;
+          $("counts").innerHTML =
+            '<div class="c"><div class="n">' + total + '</div><div class="l">In sequence</div></div>' +
+            '<div class="c"><div class="n">' + (total - ft) + '</div><div class="l">Clean</div></div>' +
+            '<div class="c"><div class="n"><span class="amberN">' + ft + '</span></div><div class="l">To verify</div></div>' +
+            '<div class="c"><div class="n">' + sel + (flaggedSel ? ' <span class="amberN" style="font-size:15px">(' + flaggedSel + ' flagged)</span>' : '') + '</div><div class="l">Selected · Letter ' + state.stage + '</div></div>';
+          updateProgress();
+        }
+
+        $("selClean").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = !isFlagged(r); }); buildRows(); });
+        $("selAll").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = true; }); buildRows(); });
+        $("selNone").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = false; }); buildRows(); });
+
+        ["ejsPublic", "ejsService", "ejsTemplate"].forEach(function (id) { $(id).value = store.get("reviel_" + id); $(id).addEventListener("input", function () { store.set("reviel_" + id, $(id).value.trim()); }); });
+
+        $("sendAllBtn").addEventListener("click", function () {
+          var sel = []; state.rows.forEach(function (r, i) { if (state.selected[i]) sel.push(i); });
+          if (!sel.length) { toast("No recipients selected"); return; }
+          var pub = $("ejsPublic").value.trim(), svc = $("ejsService").value.trim(), tpl = $("ejsTemplate").value.trim();
+          if (pub && svc && tpl && window.emailjs) {
+            if (!confirm("Send " + sel.length + " letter(s) directly through EmailJS?")) return;
+            emailjs.init(pub); var btn = $("sendAllBtn"); btn.disabled = true; var sent = 0, fail = 0;
+            (function next(k) {
+              if (k >= sel.length) { btn.disabled = false; btn.textContent = "Send selected letters"; toast("Finished. Sent " + sent + ", failed " + fail); return; }
+              var idx = sel[k], r = state.rows[idx]; btn.textContent = "Sending " + (k + 1) + " of " + sel.length;
+              emailjs.send(svc, tpl, { to_email: String(r[COLS.email] || "").trim(), from_email: $("sender").value.trim(), to_name: String(r[COLS.org] || "").trim(), subject: subjFor(r), message: bodyFor(r) })
+                .then(function () { sent++; var s = $("ledger").children[idx]; if (s) s.classList.add("done"); setTimeout(function () { next(k + 1); }, 1000); },
+                  function (err) { fail++; console.error("EmailJS error:", err); toast("Failed for " + r[COLS.org]); setTimeout(function () { next(k + 1); }, 1000); });
+            })(0);
+          } else {
+            if (!confirm("No direct-send credentials set. Open drafts for all " + sel.length + " recipient(s) in your mail client?")) return;
+            sel.forEach(function (idx, d) { setTimeout(function () { window.open(mailto(state.rows[idx]), "_blank"); var s = $("ledger").children[idx]; if (s) s.classList.add("done"); toast("Opened " + (d + 1) + " of " + sel.length); }, d * 700); });
+          }
         });
-      });
 
-      led.querySelectorAll('textarea[data-body]').forEach(function (txt) {
-        txt.addEventListener("input", function () {
-          var i = parseInt(txt.getAttribute("data-body"), 10);
-          state.rows[i]["custom_body_" + state.stage] = txt.value;
-          var draftLink = led.querySelector('[data-draftlink="' + i + '"]');
-          if (draftLink) draftLink.href = mailto(state.rows[i]);
+        $("openNext").addEventListener("click", function () {
+          var order = []; state.rows.forEach(function (r, i) { if (state.selected[i]) order.push(i); });
+          if (!order.length) { toast("No recipients selected"); return; }
+          var key = state.stage + ":" + order.join(",");
+          if (state.queueKey !== key) { state.queue = order; state.qi = 0; state.queueKey = key; }
+          if (state.qi >= state.queue.length) { toast("All selected drafts opened"); return; }
+          var idx = state.queue[state.qi], r = state.rows[idx]; var a = document.createElement("a"); a.href = mailto(r); a.click();
+          var s = $("ledger").children[idx]; if (s) s.classList.add("done"); state.qi++; toast("Opened " + state.qi + " of " + state.queue.length + " · " + r[COLS.org]);
         });
-      });
 
-      led.querySelectorAll('[data-sendone]').forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var idx = parseInt(btn.getAttribute("data-sendone"), 10);
-          sendIndividual(idx, btn);
+        $("exportCsv").addEventListener("click", function () {
+          var sender = $("sender").value.trim(); var lines = [["from", "to", "organization", "city", "state", "subject", "body", "stage", "flagged"]];
+          state.rows.forEach(function (r, i) { if (!state.selected[i]) return; lines.push([sender, String(r[COLS.email] || "").trim(), r[COLS.org], r[COLS.city] ? r[COLS.city] : "", r[COLS.state] ? r[COLS.state] : "", subjFor(r), bodyFor(r), "Email " + state.stage, isFlagged(r) ? "yes" : "no"]); });
+          if (lines.length === 1) { toast("No recipients selected"); return; }
+          var csv = lines.map(function (row) { return row.map(function (c) { c = String(c == null ? "" : c); return '"' + c.replace(/"/g, '""') + '"'; }).join(","); }).join("\r\n");
+          var blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" }); var url = URL.createObjectURL(blob);
+          var a = document.createElement("a"); a.href = url; a.download = "reviel_letter" + state.stage + "_send.csv"; a.click(); URL.revokeObjectURL(url);
+          toast("Exported " + (lines.length - 1) + " recipients");
         });
-      });
 
-      led.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
-        cb.addEventListener("change", function () { var i = parseInt(cb.getAttribute("data-i"), 10); state.selected[i] = cb.checked; cb.closest(".slip").classList.toggle("unsel", !cb.checked); updateCounts(); });
-      });
-      led.querySelectorAll('[data-copy]').forEach(function (btn) {
-        btn.addEventListener("click", function () { var r = state.rows[parseInt(btn.getAttribute("data-copy"), 10)]; if (navigator.clipboard) navigator.clipboard.writeText(subjFor(r) + "\n\n" + bodyFor(r)); toast("Letter copied"); });
-      });
-      updateCounts();
-    }
-
-    function updateCounts() {
-      var sel = 0, flaggedSel = 0; state.rows.forEach(function (r, i) { if (state.selected[i]) { sel++; if (isFlagged(r)) flaggedSel++; } });
-      var total = state.rows.length, ft = state.rows.filter(isFlagged).length;
-      $("counts").innerHTML =
-        '<div class="c"><div class="n">' + total + '</div><div class="l">In sequence</div></div>' +
-        '<div class="c"><div class="n">' + (total - ft) + '</div><div class="l">Clean</div></div>' +
-        '<div class="c"><div class="n"><span class="amberN">' + ft + '</span></div><div class="l">To verify</div></div>' +
-        '<div class="c"><div class="n">' + sel + (flaggedSel ? ' <span class="amberN" style="font-size:15px">(' + flaggedSel + ' flagged)</span>' : '') + '</div><div class="l">Selected · Letter ' + state.stage + '</div></div>';
-      updateProgress();
-    }
-
-    $("selClean").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = !isFlagged(r); }); buildRows(); });
-    $("selAll").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = true; }); buildRows(); });
-    $("selNone").addEventListener("click", function () { state.rows.forEach(function (r, i) { state.selected[i] = false; }); buildRows(); });
-
-    ["ejsPublic", "ejsService", "ejsTemplate"].forEach(function (id) { $(id).value = store.get("reviel_" + id); $(id).addEventListener("input", function () { store.set("reviel_" + id, $(id).value.trim()); }); });
-
-    $("sendAllBtn").addEventListener("click", function () {
-      var sel = []; state.rows.forEach(function (r, i) { if (state.selected[i]) sel.push(i); });
-      if (!sel.length) { toast("No recipients selected"); return; }
-      var pub = $("ejsPublic").value.trim(), svc = $("ejsService").value.trim(), tpl = $("ejsTemplate").value.trim();
-      if (pub && svc && tpl && window.emailjs) {
-        if (!confirm("Send " + sel.length + " letter(s) directly through EmailJS?")) return;
-        emailjs.init(pub); var btn = $("sendAllBtn"); btn.disabled = true; var sent = 0, fail = 0;
-        (function next(k) {
-          if (k >= sel.length) { btn.disabled = false; btn.textContent = "Send selected letters"; toast("Finished. Sent " + sent + ", failed " + fail); return; }
-          var idx = sel[k], r = state.rows[idx]; btn.textContent = "Sending " + (k + 1) + " of " + sel.length;
-          emailjs.send(svc, tpl, { to_email: String(r[COLS.email] || "").trim(), from_email: $("sender").value.trim(), to_name: String(r[COLS.org] || "").trim(), subject: subjFor(r), message: bodyFor(r) })
-            .then(function () { sent++; var s = $("ledger").children[idx]; if (s) s.classList.add("done"); setTimeout(function () { next(k + 1); }, 1000); },
-              function (err) { fail++; console.error("EmailJS error:", err); toast("Failed for " + r[COLS.org]); setTimeout(function () { next(k + 1); }, 1000); });
-        })(0);
-      } else {
-        if (!confirm("No direct-send credentials set. Open drafts for all " + sel.length + " recipient(s) in your mail client?")) return;
-        sel.forEach(function (idx, d) { setTimeout(function () { window.open(mailto(state.rows[idx]), "_blank"); var s = $("ledger").children[idx]; if (s) s.classList.add("done"); toast("Opened " + (d + 1) + " of " + sel.length); }, d * 700); });
-      }
-    });
-
-    $("openNext").addEventListener("click", function () {
-      var order = []; state.rows.forEach(function (r, i) { if (state.selected[i]) order.push(i); });
-      if (!order.length) { toast("No recipients selected"); return; }
-      var key = state.stage + ":" + order.join(",");
-      if (state.queueKey !== key) { state.queue = order; state.qi = 0; state.queueKey = key; }
-      if (state.qi >= state.queue.length) { toast("All selected drafts opened"); return; }
-      var idx = state.queue[state.qi], r = state.rows[idx]; var a = document.createElement("a"); a.href = mailto(r); a.click();
-      var s = $("ledger").children[idx]; if (s) s.classList.add("done"); state.qi++; toast("Opened " + state.qi + " of " + state.queue.length + " · " + r[COLS.org]);
-    });
-
-    $("exportCsv").addEventListener("click", function () {
-      var sender = $("sender").value.trim(); var lines = [["from", "to", "organization", "city", "state", "subject", "body", "stage", "flagged"]];
-      state.rows.forEach(function (r, i) { if (!state.selected[i]) return; lines.push([sender, String(r[COLS.email] || "").trim(), r[COLS.org], r[COLS.city] ? r[COLS.city] : "", r[COLS.state] ? r[COLS.state] : "", subjFor(r), bodyFor(r), "Email " + state.stage, isFlagged(r) ? "yes" : "no"]); });
-      if (lines.length === 1) { toast("No recipients selected"); return; }
-      var csv = lines.map(function (row) { return row.map(function (c) { c = String(c == null ? "" : c); return '"' + c.replace(/"/g, '""') + '"'; }).join(","); }).join("\r\n");
-      var blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" }); var url = URL.createObjectURL(blob);
-      var a = document.createElement("a"); a.href = url; a.download = "reviel_letter" + state.stage + "_send.csv"; a.click(); URL.revokeObjectURL(url);
-      toast("Exported " + (lines.length - 1) + " recipients");
-    });
-
-    updateProgress();
-  })();
-</script>
-    </div>
-  </main>
+        updateProgress();
+      })();
+    </script>
+</div>
+</main>
 </div>
